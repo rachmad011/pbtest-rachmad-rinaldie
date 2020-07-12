@@ -2,6 +2,10 @@
 
 untuk menjalankan web apps, pastikan Anda melakukan hal ini terlebih dahulu
 
+```
+composer install
+```
+
 
 
 # Lumen PHP Framework
