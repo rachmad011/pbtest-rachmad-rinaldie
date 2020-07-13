@@ -1,34 +1,51 @@
-# PBTEST-RACHMAD RINALDIE
+# Simple RestAPI menggunaka Lumen dan Klasifikasi nama Produk
 
-untuk menjalankan web apps, pastikan Anda melakukan hal ini terlebih dahulu
+### Pertama-tama clone dulu
 
+Lalu, setelah berhasil di clone install package di dalamnya dengan menggunakan perintah berikut :
 ```
 composer install
 ```
+Setelah itu install packages dari NPM menggunakan perintah berikut :
+```
+npm install
+```
+Lalu Anda download .env.example dan database nya yang sudah saya share di link berikut ini https://drive.google.com/drive/folders/10VyaobJPLglU6jKJrBeR3LgMb9fmHOaj?usp=sharing
 
+Setelah di download, letakkan file .env.example di direktori root proyek Anda lalu ubah namanya jadi .env dan Anda bisa atur konfigurasi di dalamnya terutama bagian database. Pastikan nama database sesuai serta nama user dan password login ke MySQL sudah sesuai dengan environment yang Anda jalankan.
 
+Jika sudah selesai dan tidak ada error, maka harusnya sudah bisa dijalankan menggunakan perintah berikut :
+```
+php -S localhost:3000 -t public
+```
+Jika sudah seperti ini harusnya sudah jalan.
 
-# Lumen PHP Framework
+Saya sudah buat route khusus ke `localhost:3000/key` yang dimana akan men-generate string acak sebanyak 32 karakter.
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Setelah ada mengimpor database yang sudah di download tadi, anda bisa langsung mengakses database via api menggunakan aplikasi POSTMAN
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Anda bisa langsung melihat keseluruhan produk dengan pergi ke route berikut : 
+```
+localhost:3000/api/v1/products
+```
+Jika Anda ingin memasukkan data baru via api Anda bisa ke route berikut ini : 
+```
+localhost:3000/api/v1/products
+```
+Namun pastikan format inputan Anda seperti ini : 
+```
+{
+    "products_name_before": "iPhone 7plus 256 GB Rose Gold (September Promo)"
+}
+```
+Di database saya menggunakan 2 kolom utama yaitu **products_name_before** dan **products_name_after**.
 
-## Official Documentation
+**products_name_before** merupakan nama produk yang akan dimasukkan oleh user yang kemudian akan diolah lagi sesuai klasifikasi sebelum dimasukkan ke database.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+**products_name_after** akan menerima hasil klasifikasi dari products_name_before yang telah ditentukan agar nama produk yang tersimpan sesuai dengan yang telah ditentukan.
 
-## Contributing
-
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Teknologi
+## 1. Lumen
+Lumen mengklaim sebagai salah satu microframework yang tercepat selain s*\ilex dan S*\lim 3. 
+## 2. MySQL
+Bukan pilihan terbaik, tapi bukan pilihan terburuk juga sih. Saya mau menggunakan MongoDB tapi ternyata gak support di WSL (Windows Subsystem for Linux) yang saya gunakan sekarang.
